@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - trigger_area
+  - Package
+  - Customer
   layers:
   - Default
   - TransparentFX

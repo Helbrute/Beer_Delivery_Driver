@@ -24,7 +24,7 @@ public class Driver : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Get out of my lawn!!!");
-        moveSpeed = 2f;
+        moveSpeed = 3f;
     }
 
     private void OnTriggerExit2D(Collider2D other)

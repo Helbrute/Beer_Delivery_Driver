@@ -4,14 +4,34 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
+    //Booleans
+    bool hasPackage = false;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    //Variables
+    [SerializeField] float destoroyTimer = 0.1f;
+    [SerializeField] GameObject outline;
+
+
+    private void Start()
     {
-        Debug.Log("Ouch!");
+        outline.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //Debug.Log("What was that?!");
+        if (other.tag == "Package" && hasPackage == false)
+        {
+            Debug.Log("Package picked up!");
+            hasPackage = true;
+            Destroy(other.gameObject, destoroyTimer);
+            outline.SetActive(true);
+        }
+
+        if (other.tag == "Customer" && hasPackage == true)
+        {
+            Debug.Log("Package delivered!");
+            hasPackage = false;
+            outline.SetActive(false);
+        }
     }
 }
