@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Collision : MonoBehaviour
 {
-    //Booleans
-    bool hasPackage = false;
-
     //Variables
     [SerializeField] float destoroyTimer = 0.1f;
-    [SerializeField] GameObject outline;
+    [SerializeField] GameObject packageUI;
+    public bool hasPackage = false;
 
 
     private void Start()
     {
-        outline.SetActive(false);
+        packageUI.SetActive(false);
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -24,14 +23,14 @@ public class Collision : MonoBehaviour
             Debug.Log("Package picked up!");
             hasPackage = true;
             Destroy(other.gameObject, destoroyTimer);
-            outline.SetActive(true);
+            packageUI.SetActive(true);
         }
 
         if (other.tag == "Customer" && hasPackage == true)
         {
             Debug.Log("Package delivered!");
             hasPackage = false;
-            outline.SetActive(false);
+            packageUI.SetActive(false);
         }
     }
 }

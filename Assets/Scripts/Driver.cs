@@ -10,7 +10,15 @@ public class Driver : MonoBehaviour
     [SerializeField] float boostSpeed = 10f;
     [SerializeField] float boostDuration = 30f;
     private float bumperDuration = 0.5f;
+    [SerializeField] GameObject outline;
+    public bool hasPackage = false;
 
+
+    public void Start()
+    {
+        hasPackage = false;
+        outline.SetActive(false);    
+    }
 
     private void Update()
     {
@@ -21,22 +29,35 @@ public class Driver : MonoBehaviour
         transform.Translate(0, moveAmount, 0f);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.tag == "Package" && hasPackage)
+        {
+            outline.SetActive(true);
+            hasPackage = true;
+        }
+        if (other.tag == "Customer" && !hasPackage)
+        {
+            hasPackage = false;
+            outline.SetActive(false);
+        }
         if (other.tag == "trigger_area")
         {
             moveSpeed = 3f;
         }
+
         if (other.tag == "Booster")
         {
             StartCoroutine(BoostDelay(boostSpeed, boostDuration));
         }
+
         if (other.tag == "Bumper")
         {
             StartCoroutine(Bumper(bumperDuration));
         }
     }
 
+//Booster event
     private IEnumerator BoostDelay(float speed, float timer)
     {
         Debug.Log("You just entered Booster");
@@ -46,6 +67,7 @@ public class Driver : MonoBehaviour
         moveSpeed = 5f;
     }
 
+//Bumper event
     private IEnumerator Bumper(float timer)
     {
         moveSpeed /= 2;
