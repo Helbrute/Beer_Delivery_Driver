@@ -5,13 +5,13 @@ using UnityEngine;
 public class Driver : MonoBehaviour
 {
     //Variables
+    [SerializeField] GameObject outline;
     [SerializeField] float steerSpeed = 200f;
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float boostSpeed = 10f;
     [SerializeField] float boostDuration = 30f;
     private float bumperDuration = 0.5f;
-    [SerializeField] GameObject outline;
-    public bool hasPackage = false;
+    private static bool hasPackage = false;
 
 
     public void Start()

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Collision : MonoBehaviour
 {
     //Variables
-    [SerializeField] float destoroyTimer = 0.1f;
+    
     [SerializeField] GameObject packageUI;
     public bool hasPackage = false;
 
@@ -22,7 +22,6 @@ public class Collision : MonoBehaviour
         {
             Debug.Log("Package picked up!");
             hasPackage = true;
-            Destroy(other.gameObject, destoroyTimer);
             packageUI.SetActive(true);
         }
 
