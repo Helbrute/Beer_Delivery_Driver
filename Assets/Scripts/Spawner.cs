@@ -5,14 +5,13 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
-    Driver driver;
     [SerializeField] Vector3 spawnPosition;
-    //float spawnRate = 2f;
+    public Driver driver;
     private bool canSpawn = true;
 
     private void Start()
     {
-        //canSpawn = true;
+        driver = GetComponent<Driver>();
     }
 
     private void Update()
@@ -27,23 +26,15 @@ public class Spawner : MonoBehaviour
             canSpawn = false;
             Debug.Log("Package Spawned");
         }
-        if(prefab.activeSelf == false)
+        else if(prefab.activeSelf == false)
         {
             Debug.Log("Package Picked");
             canSpawn = true;
         }
     }
 
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.tag == "Player")
-    //    {
-    //        canSpawn = false;
-    //    }
-    //}
-    private void Spawn()
+    public void Spawn()
     {
         Instantiate(prefab, spawnPosition, Quaternion.identity);
     }
-
 }

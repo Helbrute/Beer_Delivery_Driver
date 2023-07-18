@@ -10,12 +10,14 @@ public class Driver : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     [SerializeField] float boostSpeed = 10f;
     [SerializeField] float boostDuration = 30f;
+    [SerializeField] Spawner spawner;
     private float bumperDuration = 0.5f;
-    private static bool hasPackage = false;
+    public bool hasPackage = false;
 
 
     public void Start()
     {
+        spawner = new Spawner();
         hasPackage = false;
         outline.SetActive(false);    
     }
